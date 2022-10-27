@@ -8,37 +8,45 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.CompletableFuture;
 
 public class App {
 
 	public static void main(String[] args) {
 
-		int[] arr = new int[100000000];
+		int[] arr = new int[50];
 		int j = 3;
-		for (int i = 0; i < 10000 * 10000; i++) {
+		for (int i = 0; i < 50; i++) {
 			arr[i] = (i * j) % 11;
 		}
 
 		Instant start = Instant.now();
 		Map<Integer, Integer> map = new HashMap<>();
 
-//		for (int i : arr) {
-//			map.put(i, map.getOrDefault(i, 0) + 1);
-//		}
-
 		generateMap(arr, 0, arr.length - 1, map);
+
+//		final int mid = (arr.length - 1) / 2;
+//		CompletableFuture.runAsync(() -> {
+//			for (int i = 0; i < mid; i++) {
+//				map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+//			}
+//		}).runAsync(() -> {
+//			for (int i = mid; i < arr.length; i++) {
+//				map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+//			}
+//		}).join();
 		Instant end = Instant.now();
 		System.out.println(Duration.between(start, end).getSeconds());
 		map.entrySet().forEach(System.out::println);
 
 	}
 
-	private static void generateMap(int[] arr, int i, int j, Map<Integer, Integer> map) {
-		if (i <= j) {
-			int mid = i + (j - i) / 2;
+	private static void generateMap(int[] arr, int start, int end, Map<Integer, Integer> map) {
+		if (start <= end) {
+			int mid = start + (end - start) / 2;
 			map.put(arr[mid], map.getOrDefault(arr[mid], 0) + 1);
-			generateMap(arr, i, mid - 1, map);
-			generateMap(arr, mid + 1, j, map);
+			generateMap(arr, start, mid - 1, map);
+			generateMap(arr, mid + 1, end, map);
 		}
 	}
 
