@@ -1,47 +1,21 @@
 package com.problems.java;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.CompletableFuture;
+import java.util.Scanner;
 
 public class App {
 
 	public static void main(String[] args) {
 
-		int[] arr = new int[50];
-		int j = 3;
-		for (int i = 0; i < 50; i++) {
-			arr[i] = (i * j) % 11;
-		}
-
-		Instant start = Instant.now();
-		Map<Integer, Integer> map = new HashMap<>();
-
-		generateMap(arr, 0, arr.length - 1, map);
-
-//		final int mid = (arr.length - 1) / 2;
-//		CompletableFuture.runAsync(() -> {
-//			for (int i = 0; i < mid; i++) {
-//				map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
-//			}
-//		}).runAsync(() -> {
-//			for (int i = mid; i < arr.length; i++) {
-//				map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
-//			}
-//		}).join();
-		Instant end = Instant.now();
-		System.out.println(Duration.between(start, end).getSeconds());
-		map.entrySet().forEach(System.out::println);
-
+		int i = Integer.MAX_VALUE;
+		System.out.println(Integer.compare(i, Integer.MAX_VALUE));
 	}
 
-	private static void generateMap(int[] arr, int start, int end, Map<Integer, Integer> map) {
+	static void generateMap(int[] arr, int start, int end, Map<Integer, Integer> map) {
 		if (start <= end) {
 			int mid = start + (end - start) / 2;
 			map.put(arr[mid], map.getOrDefault(arr[mid], 0) + 1);

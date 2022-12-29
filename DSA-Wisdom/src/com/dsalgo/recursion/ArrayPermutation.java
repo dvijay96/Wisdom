@@ -10,35 +10,35 @@ import java.util.Set;
 public class ArrayPermutation {
 
 	public static void main(String[] args) {
-		int[] arr = { 1, 2, 3, 4 };
+		int[] arr = { 3, 1, 2 };
 
 		List<Integer> permutation = new ArrayList<>();
 		boolean[] pos = new boolean[arr.length];
 
 //		permutate(arr, permutation, pos, 3);
 //		System.out.println();
-//		permutate(arr, 0);
+		permutate(arr, 0);
 
-		Set<List<Integer>> permutations = new HashSet<>();
-		permutation.clear();
-		pos = new boolean[arr.length];
-		permutate(arr, pos, permutations, permutation);
-
-		List<List<Integer>> list = new ArrayList<>(permutations);
-		list.sort(new Comparator<List<Integer>>() {
-			@Override
-			public int compare(List<Integer> o1, List<Integer> o2) {
-				for (int i = 0; i < o1.size(); i++) {
-					if (o1.get(i) != o2.get(i)) {
-						return o1.get(i) - o2.get(i);
-					}
-				}
-				return -1;
-			}
-		});
-
-		System.out.println();
-		list.forEach(System.out::println);
+//		Set<List<Integer>> permutations = new HashSet<>();
+//		permutation.clear();
+//		pos = new boolean[arr.length];
+//		permutate(arr, pos, permutations, permutation);
+//
+//		List<List<Integer>> list = new ArrayList<>(permutations);
+//		list.sort(new Comparator<List<Integer>>() {
+//			@Override
+//			public int compare(List<Integer> o1, List<Integer> o2) {
+//				for (int i = 0; i < o1.size(); i++) {
+//					if (o1.get(i) != o2.get(i)) {
+//						return o1.get(i) - o2.get(i);
+//					}
+//				}
+//				return -1;
+//			}
+//		});
+//
+//		System.out.println();
+//		list.forEach(System.out::println);
 	}
 
 	private static void permutate(int[] arr, boolean[] pos, Set<List<Integer>> permutations,
