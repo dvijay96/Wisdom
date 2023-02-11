@@ -1,18 +1,108 @@
 package com.problems.java;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Scanner;
+
+import com.problems.java.utility.ArrayUtils;
 
 public class App {
 
 	public static void main(String[] args) {
+		int[] arr = new int[7];
 
-		int i = Integer.MAX_VALUE;
-		System.out.println(Integer.compare(i, Integer.MAX_VALUE));
+		ArrayUtils.fillRandom(arr);
+		ArrayUtils.print(arr);
+
+		Deque<Integer> dq = new ArrayDeque<>();
+
+		for (int i : arr) {
+			dq.add(i);
+		}
+
+		System.out.println(dq);
+	}
+
+	static List<List<Object>> getSubsequences(int[] arr) {
+		List<List<Object>> ans = new ArrayList<>();
+		subsequences(arr, ans, new ArrayList<>(), 0);
+		return ans;
+	}
+
+	/**
+	 * 
+	 * @param arr
+	 * @param ans
+	 * @param list
+	 * @param idx
+	 */
+	static void subsequences(int[] arr, List<List<Object>> ans, List<Object> list, int idx) {
+		ans.add(new ArrayList<>(list));
+		for (int i = idx; i < arr.length; i++) {
+			list.add(arr[i]);
+			subsequences(arr, ans, list, i + 1);
+			list.remove(list.size() - 1);
+		}
+	}
+
+	public List<List<Integer>> permute(int[] nums) {
+		List<List<Integer>> ans = new ArrayList<>();
+		permute(nums, ans, 0);
+		return ans;
+	}
+
+	void permute(int[] nums, List<List<Integer>> ans, int idx) {
+		if (idx == nums.length) {
+			List<Integer> list = new ArrayList<>();
+			for (int i : nums) {
+				list.add(i);
+			}
+			ans.add(list);
+		} else {
+			for (int i = idx; i < nums.length; i++) {
+				swap(nums, i, idx);
+				permute(nums, ans, idx + 1);
+				swap(nums, idx, i);
+			}
+		}
+	}
+
+	void swap(int[] arr, int i, int j) {
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+
+	static void generate(int n, StringBuilder str) {
+		if (str.length() == n) {
+			if (isValid(str))
+				System.out.println(str);
+		} else {
+			str.append('0');
+			generate(n, str);
+			str.deleteCharAt(str.length() - 1);
+			str.append('1');
+			generate(n, str);
+			str.deleteCharAt(str.length() - 1);
+		}
+	}
+
+	private static boolean isValid(StringBuilder str) {
+		int i = 0;
+		int sum1 = 0;
+		while (i <= str.length() / 2) {
+			sum1 += (str.charAt(i++) - '0');
+		}
+		int j = str.length() / 2 + 1;
+		int sum2 = 0;
+		while (j < str.length()) {
+			sum2 += (str.charAt(j++) - '0');
+		}
+		return sum1 == sum2;
 	}
 
 	static void generateMap(int[] arr, int start, int end, Map<Integer, Integer> map) {

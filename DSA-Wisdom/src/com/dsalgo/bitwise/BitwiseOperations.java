@@ -6,22 +6,22 @@ public class BitwiseOperations {
 
 		BitwiseOperations obj = new BitwiseOperations();
 
-		int a = 5;
+		int a = 11;
 		int b = 7;
 
 //		obj.bitwiseAND(a, b);
 //		obj.bitwiseOR(a, b);
-//		obj.bitwiseXOR(a, b);
-//		obj.leftShift(a, 1);
-//		obj.rightShift(a, 1);
-//		obj.bitWiseNOT(a);
+		obj.bitwiseXOR(a, b);
+		obj.leftShift(a, 1);
+		obj.rightShift(a, 1);
+		obj.bitWiseNOT(a);
 
 		/*
 		 * The & operator can be used to quickly check if a number is odd or even. The
 		 * value of expression (x & 1) would be non-zero only if x is odd, otherwise the
 		 * value would be zero.
 		 */
-		System.out.println(23 ^ 2);
+		System.out.println(a^b);
 		
 	}
 

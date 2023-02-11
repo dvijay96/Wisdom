@@ -8,8 +8,12 @@ import java.util.TreeSet;
 public class App2 {
 
 	public static void main(String[] args) {
-		App2 obj = new App2();
-		obj.sample();
+		int ans = 0;
+
+		for (int i = 1; i <= 25; i++) {
+			ans ^= i;
+			System.out.println(i + " - > " + ans);
+		}
 
 	}
 

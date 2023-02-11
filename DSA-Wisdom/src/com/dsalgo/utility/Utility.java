@@ -2,7 +2,9 @@ package com.dsalgo.utility;
 
 import com.dsalgo.algo.sortings.examples.model.Student;
 
-public class Utility {
+public interface Utility {
+
+	static final int hash = 74;
 
 	public static Student[] generateInput() {
 		Student[] arr = new Student[7];
@@ -15,4 +17,5 @@ public class Utility {
 		}
 		return arr;
 	}
+	
 }
