@@ -1,2 +1,0 @@
-# Wisdom
-Wisdom on Learnings
