@@ -1,4 +1,4 @@
-package com.design.patterns;
+package com.design.patterns.factorymethod.example1;
 
 public class Jio extends CellularPlan {
 
