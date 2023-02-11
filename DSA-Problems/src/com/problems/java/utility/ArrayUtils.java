@@ -146,4 +146,32 @@ public interface ArrayUtils {
 		fillRandomRange(arr, start, end);
 		return arr;
 	}
+
+	/**
+	 * To get filled array of given size, elements ranging from 1 to size
+	 * 
+	 * @param size
+	 * @return
+	 */
+	static int[] getIntArrayUnique(int size) {
+		int[] arr = new int[size];
+		for (int i = 0; i < size; i++) {
+			arr[i] = i + 1;
+		}
+		return arr;
+	}
+
+	/**
+	 * Shuffles the array randomly
+	 * @param arr
+	 */
+	static void shuffle(int[] arr) {
+
+		for (int i = 0; i < arr.length; i++) {
+			int j = ThreadLocalRandom.current().nextInt(0, arr.length);
+			int temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
+		}
+	}
 }
