@@ -151,7 +151,7 @@ public class VerticalTraversal {
 //		-> We could store a pair of node value, its axis and its level as a Tuple in the PriorityQueue.
 //		-> This priority queue will sort based on axis as its 1st priority else level as 2nd priority and lastly the node value.
 	public List<Integer> verticalTraversalII(Node root) {
-		Queue<Pair> queue = new PriorityQueue<>((a, b) -> {
+		Queue<PairX> queue = new PriorityQueue<>((a, b) -> {
 			if (a.axis != b.axis)
 				return a.axis - b.axis;
 			else if (a.level != b.level)
@@ -169,7 +169,7 @@ public class VerticalTraversal {
 		int axis = queue.peek().axis;
 		list.add(new ArrayList<>());
 		while (!queue.isEmpty()) {
-			Pair pair = queue.poll();
+			PairX pair = queue.poll();
 			if (axis != pair.axis) {
 				list.add(new ArrayList<>());
 				axis = pair.axis;
@@ -183,12 +183,12 @@ public class VerticalTraversal {
 		return ans;
 	}
 
-	private void dfs(Node root, Queue<Pair> queue, int x, int level) {
+	private void dfs(Node root, Queue<PairX> queue, int x, int level) {
 		if (root == null) {
 			return;
 		}
 
-		queue.add(new Pair(root.data, level, x));
+		queue.add(new PairX(root.data, level, x));
 
 		dfs(root.left, queue, x - 1, level + 1);
 		dfs(root.right, queue, x + 1, level + 1);
@@ -232,7 +232,7 @@ public class VerticalTraversal {
 
 }
 
-class Pair {
+class PairX {
 	int val;
 	int level;
 	int axis;
@@ -243,7 +243,7 @@ class Pair {
 	 * @param level
 	 * @param axis
 	 */
-	public Pair(int val, int level, int axis) {
+	public PairX(int val, int level, int axis) {
 		super();
 		this.val = val;
 		this.level = level;

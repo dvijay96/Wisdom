@@ -20,14 +20,14 @@ public class MinimumSwaps {
 		int[] arr = { 5, 4, 3, 2, 1 };
 
 		new AtomicInteger();
-		
+
 		System.out.println(minimumSwaps(arr));
 	}
 
 	static int minimumSwaps(int[] arr) {
 		int swapCount = 0;
 		for (int i = 0; i < arr.length;) {
-			if (i != arr[i] - 1) {
+			if (arr[i] != i + 1) {
 				int temp1 = arr[i];
 				arr[i] = arr[arr[i] - 1];
 				arr[temp1 - 1] = temp1;

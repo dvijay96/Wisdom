@@ -1,4 +1,4 @@
-package com.problems.leetcode.daily;
+package com.problems.leetcode.daily.array;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -45,7 +45,8 @@ public class AsFarFromLandAsPossible {
 //	-> To use BFS to check how many levels it takes to turn all water cells to land cells.
 //	-> Since at least one cell is land cell then the ans would be levels - 1.
 //	-> Starting with, we need to push all the positions of land cells into the queue.
-//	-> Then while bfs traversal, if in any direction of the land cell , water cell is found , convert it to land cell and push into queue.
+//	-> Then while bfs traversal, if in any direction of the land cell , water cell is found , convert it to land cell 
+//		and push into queue.
 	public static int maxDistance(int[][] grid) {
 
 		int n = grid.length;

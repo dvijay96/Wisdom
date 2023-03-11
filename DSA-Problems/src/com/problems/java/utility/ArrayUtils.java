@@ -1,5 +1,7 @@
 package com.problems.java.utility;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public interface ArrayUtils {
@@ -137,8 +139,8 @@ public interface ArrayUtils {
 	 * To get filled array of given size with the given range of numbers
 	 * 
 	 * @param size
-	 * @param start
-	 * @param end
+	 * @param start (inclusive)
+	 * @param end   (inclusive)
 	 * @return
 	 */
 	static int[] getIntArray(int size, final int start, final int end) {
@@ -155,14 +157,21 @@ public interface ArrayUtils {
 	 */
 	static int[] getIntArrayUnique(int size) {
 		int[] arr = new int[size];
-		for (int i = 0; i < size; i++) {
-			arr[i] = i + 1;
+		Set<Integer> set = new HashSet<>();
+		ThreadLocalRandom current = ThreadLocalRandom.current();
+		while (set.size() < size) {
+			set.add(current.nextInt(1, 21));
+		}
+		int i = 0;
+		for (Integer num : set) {
+			arr[i++] = num;
 		}
 		return arr;
 	}
 
 	/**
 	 * Shuffles the array randomly
+	 * 
 	 * @param arr
 	 */
 	static void shuffle(int[] arr) {
@@ -173,5 +182,31 @@ public interface ArrayUtils {
 			arr[i] = arr[j];
 			arr[j] = temp;
 		}
+	}
+
+	/**
+	 * Gets a randomly filled array
+	 * 
+	 * @param size
+	 * @return
+	 */
+	static char[] getCharArray(int size) {
+		char[] arr = new char[size];
+		fillRandom(arr);
+		return arr;
+	}
+
+	/**
+	 * Gets a randomly filled array where start <= arr[i] <= end
+	 * 
+	 * @param size
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	static char[] getCharArrayRange(int size, char start, char end) {
+		char[] arr = new char[size];
+		fillRandomRanges(arr, start, end);
+		return arr;
 	}
 }

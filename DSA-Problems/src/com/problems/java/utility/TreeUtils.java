@@ -2,9 +2,11 @@ package com.problems.java.utility;
 
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.problems.trees.Node;
@@ -52,6 +54,71 @@ public interface TreeUtils {
 	}
 
 	/**
+	 * returns the traversal in an array.
+	 * 
+	 * @param root
+	 * @return
+	 */
+	static int[] inorderArray(Node root) {
+		List<Integer> list = new ArrayList<>();
+
+		Deque<Node> stack = new LinkedList<>();
+		Node node = root;
+
+		while (true) {
+			if (node != null) {
+				stack.push(node);
+				node = node.left;
+			} else {
+				if (stack.isEmpty())
+					break;
+				node = stack.pop();
+				list.add(node.data);
+				node = node.right;
+			}
+		}
+
+		int[] ans = new int[list.size()];
+
+		for (int i = 0; i < ans.length; i++) {
+			ans[i] = list.get(i);
+		}
+		return ans;
+	}
+
+	/**
+	 * returns the traversal in array.
+	 * 
+	 * @param root
+	 * @return
+	 */
+	static int[] preorderArray(Node root) {
+		List<Integer> list = new ArrayList<>();
+
+		Deque<Node> stack = new LinkedList<>();
+
+		stack.add(root);
+
+		while (!stack.isEmpty()) {
+			Node node = stack.pop();
+			if (node.right != null) {
+				stack.push(node.right);
+			}
+			if (node.left != null) {
+				stack.push(node.left);
+			}
+			list.add(node.data);
+		}
+
+		int[] ans = new int[list.size()];
+
+		for (int i = 0; i < ans.length; i++) {
+			ans[i] = list.get(i);
+		}
+		return ans;
+	}
+
+	/**
 	 * Take a root node and prints level order traversal of the B-Tree
 	 * 
 	 * @param root
@@ -78,6 +145,11 @@ public interface TreeUtils {
 		System.out.println();
 	}
 
+	/**
+	 * Print level by level ordering of nodes of the given tree
+	 * 
+	 * @param root
+	 */
 	static void printLevelOrder(Node root) {
 		List<String> list = new ArrayList<>();
 
@@ -194,25 +266,11 @@ public interface TreeUtils {
 
 	/**
 	 * Creates a Binary Tree out of the given array (including null nodes)
+	 * 
 	 * @param arr
 	 * @return
 	 */
 	static Node createBinaryTree(int[] arr) {
-		class NodeData {
-			int data;
-			StringBuilder path = new StringBuilder();
-
-			public NodeData(int data) {
-				super();
-				this.data = data;
-			}
-
-			@Override
-			public String toString() {
-				return "[ " + data + ", " + path + " ]";
-			}
-
-		}
 		char[] dir = { 'L', 'R' };
 		List<NodeData> list = new ArrayList<>();
 		for (int i : arr) {
@@ -254,4 +312,73 @@ public interface TreeUtils {
 		System.out.println("Tree:-> " + list);
 		return root;
 	}
+
+	/**
+	 * Creates a BST for the given array ( doesn't accept duplicates )
+	 * 
+	 * @param arr
+	 * @return
+	 */
+	static Node createBST(int[] arr) {
+		Node root = null;
+		List<NodeData> nodes = new ArrayList<>();
+		for (Integer num : arr) {
+			StringBuilder path = new StringBuilder();
+			if (root == null) {
+				root = new Node(num);
+				nodes.add(new NodeData(num, path.append('H')));
+			} else {
+				Node curr = root;
+				boolean duplicate = false;
+				while (true) {
+					if (num == curr.data) {
+						duplicate = true;
+						break;
+					} else if (num > curr.data) {
+						path.append('R');
+						if (curr.right != null)
+							curr = curr.right;
+						else {
+							curr.right = new Node(num);
+							break;
+						}
+					} else {
+						path.append('L');
+						if (curr.left != null)
+							curr = curr.left;
+						else {
+							curr.left = new Node(num);
+							break;
+						}
+					}
+				}
+				if (!duplicate)
+					nodes.add(new NodeData(num, path));
+			}
+		}
+		System.out.println("BST-> " + nodes);
+		return root;
+	}
+}
+
+class NodeData {
+	int data;
+	StringBuilder path = new StringBuilder();
+
+	public NodeData(int data) {
+		super();
+		this.data = data;
+	}
+
+	public NodeData(int data, StringBuilder path) {
+		super();
+		this.data = data;
+		this.path = path;
+	}
+
+	@Override
+	public String toString() {
+		return "[ " + data + ", " + path + " ]";
+	}
+
 }
