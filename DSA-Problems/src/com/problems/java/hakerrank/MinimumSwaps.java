@@ -1,7 +1,5 @@
 package com.problems.java.hakerrank;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * Given unsorted array of size n with elements ranging from 1 to n.<br/>
  * Find the minimum number of swaps required to sort the array in ascending
@@ -18,8 +16,6 @@ public class MinimumSwaps {
 	public static void main(String[] args) {
 
 		int[] arr = { 5, 4, 3, 2, 1 };
-
-		new AtomicInteger();
 
 		System.out.println(minimumSwaps(arr));
 	}

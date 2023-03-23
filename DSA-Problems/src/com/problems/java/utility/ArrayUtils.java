@@ -87,6 +87,20 @@ public interface ArrayUtils {
 	}
 
 	/**
+	 * Prints the elements of the array grid
+	 * 
+	 * @param arr
+	 */
+	static void print(char[][] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[i].length; j++) {
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	/**
 	 * Fills the given char array with random character elements ranging from A-Z
 	 * 
 	 * @param ch
