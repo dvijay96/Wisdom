@@ -1,30 +1,79 @@
 package com.problems.java;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import com.problems.java.utility.ArrayUtils;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class App {
 
 	public static void main(String[] args) {
-		int[] arr = new int[7];
 
-		ArrayUtils.fillRandom(arr);
-		ArrayUtils.print(arr);
+		List<Integer> list = new CopyOnWriteArrayList<>();
 
-		Deque<Integer> dq = new ArrayDeque<>();
-
-		for (int i : arr) {
-			dq.add(i);
+		for (int i = 1; i <= 10; i++) {
+			list.add(i);
 		}
 
-		System.out.println(dq);
+		for (int i : list) {
+			System.out.print(i + " ");
+			list.add(i * i);
+		}
+
+		System.out.println(list);
+	}
+
+	private int ans = Integer.MAX_VALUE;
+
+	public int findShortestCycle(int n, int[][] edges) {
+
+		List<List<Integer>> adj = new ArrayList<>();
+
+		for (int i = 0; i < n; i++) {
+			adj.add(new ArrayList<>());
+		}
+
+		for (int[] edge : edges) {
+			int u = edge[0];
+			int v = edge[1];
+			adj.get(u).add(v);
+			adj.get(v).add(u);
+		}
+
+		boolean[] vis = new boolean[n];
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (!vis[j]) {
+					dfs(j, adj, vis, 0, new HashMap<>(), -1);
+				}
+			}
+		}
+
+		if (ans == Integer.MAX_VALUE) {
+			return -1;
+		}
+		return ans;
+	}
+
+	boolean dfs(int src, List<List<Integer>> adj, boolean[] vis, int dis, Map<Integer, Integer> map, int parent) {
+		vis[src] = true;
+		map.put(src, dis);
+
+		for (int node : adj.get(src)) {
+			if (!vis[node]) {
+				if (dfs(node, adj, vis, dis + 1, map, src))
+					return true;
+			} else if (parent != -1 && node != parent) {
+				int len = dis - map.get(node) + 1;
+				ans = Math.min(len, ans);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	static List<List<Object>> getSubsequences(int[] arr) {
@@ -248,5 +297,22 @@ class Student {
 	public String toString() {
 		return "{name=" + name + ", age=" + age + "}";
 	}
+
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(age, name);
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Student other = (Student) obj;
+//		return age == other.age && Objects.equals(name, other.name);
+//	}
 
 }

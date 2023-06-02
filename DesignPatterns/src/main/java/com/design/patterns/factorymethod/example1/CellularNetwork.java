@@ -1,10 +1,10 @@
 package com.design.patterns.factorymethod.example1;
 
-public class SelectNetwork {
+public class CellularNetwork {
 
 	private String network;
 
-	public SelectNetwork(String network) {
+	public CellularNetwork(String network) {
 		super();
 		this.network = network;
 	}

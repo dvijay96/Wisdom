@@ -13,7 +13,7 @@ public class BasicOf2DArray {
 	}
 
 	/**
-	 * You are given a 2D array with dimensions ‘N*M’. You need to read the array
+	 * You are given a 2D array with dimensions ï¿½N*Mï¿½. You need to read the array
 	 * elements row-wise and return a linear array that stores the elements like a
 	 * wave i.e the 1st-row elements are stored from left to right, 2nd-row elements
 	 * are stored from right to left, and so on.

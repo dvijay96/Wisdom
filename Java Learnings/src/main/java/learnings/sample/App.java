@@ -2,34 +2,47 @@ package learnings.sample;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class App {
 
 	public static void main(String[] args) {
 
-		int[][] ranges = { { 6, 10 }, { 5, 15 } };
+		TreeSet<String>[] set = new TreeSet[5];
 
-		Arrays.sort(ranges, (a, b) -> a[0] - b[0]);
+		Arrays.fill(set, new TreeSet<>());
+		Set<String> set1 = new HashSet<>();
+		set1.add("TODO");
 
-		for (int[] arr : ranges) {
-			System.out.println(Arrays.toString(arr));
+		TreeSet<String> set2 = new TreeSet<>();
+		set2.add("TODO");
+
+		set[0] = set2;
+
+		
+		System.out.println(Arrays.toString(set));
+		
+		List<String> list = new ArrayList<>();
+		
+		list.add("A");
+		list.addAll(set[0]);
+		
+		System.out.println(list);
+	}
+
+	static boolean isPalindrome(List<Character> list) {
+		int i = 0;
+		int j = list.size() - 1;
+
+		while (i < j) {
+			if (!list.get(i++).equals(list.get(j--))) {
+				return false;
+			}
 		}
-
-		System.out.printf("\n Great \n");
-		System.out.printf("%n Movie %n");
-		System.out.println("✌️🙌❤️😍😜🎶😎🤦‍♂️👌😊🎉Avengers");
-//		char[][] grid = new char[5][5];
-//
-//		Scanner scan = new Scanner(System.in);
-//
-//		System.out.print("Enter:\n");
-//		for (int i = 0; i < 5; i++) {
-//			for (int j = 0; j < 5; j++)
-//				grid[i][j] = scan.next().charAt(0);
-//		}
-//
-//		System.out.println(saveCivilians(5, 5, grid));
+		return true;
 	}
 
 	public static boolean saveCivilians(int n, int m, char[][] grid) {
@@ -59,5 +72,29 @@ public class App {
 			}
 		}
 		return true;
+	}
+
+	public String mergeAlternately(String word1, String word2) {
+		int i = 0;
+
+		StringBuilder ans = new StringBuilder();
+
+		while (i < word1.length() && i < word2.length()) {
+			if (i % 2 == 0) {
+				ans.append(word1.charAt(i++));
+			} else {
+				ans.append(word2.charAt(i++));
+			}
+		}
+
+		while (i < word1.length()) {
+			ans.append(word1.charAt(i++));
+		}
+
+		while (i < word2.length()) {
+			ans.append(word2.charAt(i++));
+		}
+
+		return ans.toString();
 	}
 }

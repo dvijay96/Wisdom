@@ -1,6 +1,5 @@
 package com.problems.graphs;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -11,7 +10,7 @@ public class DetectCycleInDirectedGraph {
 
 	public static void main(String[] args) {
 		DetectCycleInDirectedGraph obj = new DetectCycleInDirectedGraph();
-		List<List<Integer>> adjList = GraphUtils.adjacencyListDirected(7);
+		List<List<Integer>> adjList = GraphUtils.adjacencyListDirected(10);
 
 		System.out.println("Graph:- ");
 		adjList.forEach(System.out::println);

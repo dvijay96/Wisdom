@@ -2,14 +2,22 @@ package com.dsalgo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class App {
 
 	public static void main(String[] args) {
 
-		System.out.println(log(81234, 10) + 1);
-		System.out.println(reverse(-121));
-		System.out.println(gcd(5, 10));
+		long j = 1000000000078l;
+		String num = j + "";
+		System.out.println(num);
+		System.out.println(Integer.parseInt(num));
+		StringBuilder str = new StringBuilder();
+		str.reverse().toString();
+		
+		ThreadLocalRandom random = ThreadLocalRandom.current();
+		
+		random.nextInt(0, 10);
 	}
 
 	static int gcd(int a, int b) {

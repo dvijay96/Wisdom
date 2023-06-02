@@ -34,9 +34,11 @@ public class BipartiteGraph {
 	public static void main(String[] args) {
 
 		BipartiteGraph obj = new BipartiteGraph();
-		int[][] graph = { { 1, 2, 3 }, { 0, 2 }, { 0, 1, 3 }, { 0, 2 } };
+		int[][] graph = { { 3, 4, 6 }, { 3, 6 }, { 3, 6 }, { 0, 1, 2, 5 }, { 0, 7, 8 }, { 3 }, { 0, 1, 2, 7 }, { 4, 6 },
+				{ 4 }, {} };
 
 		System.out.println(obj.isBipartite(graph));
+		System.out.println(obj.isBipartiteII(graph));
 	}
 
 //	Approach:- 
@@ -80,5 +82,42 @@ public class BipartiteGraph {
 			}
 		}
 		return false;
+	}
+
+	/*********************************************************************/
+
+	/* TO BE Checked !!!! */
+	@Deprecated
+	public boolean isBipartiteII(int[][] graph) {
+		int n = graph.length;
+
+		boolean[] vis = new boolean[n];
+		char[] mark = new char[n];
+
+		for (int i = 0; i < n; i++) {
+			if (!vis[i] && !dfs(i, graph, vis, 'R', mark)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	@Deprecated
+	boolean dfs(int node, int[][] graph, boolean[] vis, char color, char[] mark) {
+		vis[node] = true;
+		mark[node] = color;
+
+		char nextColor = color == 'R' ? 'G' : 'R';
+
+		for (int adj : graph[node]) {
+			if (!vis[adj]) {
+				return dfs(adj, graph, vis, nextColor, mark);
+			} else if (mark[adj] != nextColor) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }

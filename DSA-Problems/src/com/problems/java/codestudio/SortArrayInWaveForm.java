@@ -3,15 +3,15 @@ package com.problems.java.codestudio;
 /**
  * 
  * <pre>
- *You have been given an unsorted array ‘ARR’.
+ *You have been given an unsorted array ï¿½ARRï¿½.
 Your task is to sort the array in such a way that the array looks like a wave array.
 Example:
-If the given sequence ‘ARR’ has ‘N’ elements then the sorted wave array looks like - 
-‘ARR[0] >= ARR[1]’ and ‘ARR[1] <= ARR[2]’
-‘ARR[2] >= ARR[3]’ and ‘ARR[3] <= ARR[4]’
-‘ARR[4] >= ARR[5]’ and ‘ARR[5] <= ARR[6]’  And so on.
+If the given sequence ï¿½ARRï¿½ has ï¿½Nï¿½ elements then the sorted wave array looks like - 
+ï¿½ARR[0] >= ARR[1]ï¿½ and ï¿½ARR[1] <= ARR[2]ï¿½
+ï¿½ARR[2] >= ARR[3]ï¿½ and ï¿½ARR[3] <= ARR[4]ï¿½
+ï¿½ARR[4] >= ARR[5]ï¿½ and ï¿½ARR[5] <= ARR[6]ï¿½  And so on.
 Note:
-1. ‘ARR[0]’ must be greater than or equal to ‘ARR[1]’.
+1. ï¿½ARR[0]ï¿½ must be greater than or equal to ï¿½ARR[1]ï¿½.
 
 2. There can be multiple arrays that look like a wave array but you have to return only one.
 
@@ -19,8 +19,8 @@ Note:
 
 
 Explanation
-The given array ‘ ARR = { 4, 3, 5, 2, 3, 1, 2 } ’
-The below figure is a visual representation of the given ‘ARR’ and you can see we can express ‘ARR’ in a waveform array because 
+The given array ï¿½ ARR = { 4, 3, 5, 2, 3, 1, 2 } ï¿½
+The below figure is a visual representation of the given ï¿½ARRï¿½ and you can see we can express ï¿½ARRï¿½ in a waveform array because 
 4>3 and 3<5 
 5>2 and 2<3
 3>1 and 1<2

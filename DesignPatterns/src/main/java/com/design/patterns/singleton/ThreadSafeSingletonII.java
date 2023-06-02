@@ -8,10 +8,10 @@ public class ThreadSafeSingletonII {
 	}
 
 	public static ThreadSafeSingletonII getInstance() {
-		return ThreadSafeSingletonII.Holder.instance;
+		return SingletonHolder.INSTANCE;
 	}
 
-	private static class Holder {
-		public static ThreadSafeSingletonII instance = new ThreadSafeSingletonII();
+	private static class SingletonHolder {
+		public static final ThreadSafeSingletonII INSTANCE = new ThreadSafeSingletonII();
 	}
 }
