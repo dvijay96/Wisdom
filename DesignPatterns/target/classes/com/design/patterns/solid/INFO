@@ -1,0 +1,17 @@
+SOLID Principles
+
+S - Single Responsibility Principle
+O - Open / Closed Principle
+L - Liskov Substitution Principle
+I - Interface Segmented Principle
+D - Dependency Inversion Principle
+
+
+Advantages:-
+
+	-> Helps us write better code
+	-> Avoid duplicate code
+	-> Easy to maintain
+	-> Easy to understand
+	-> Flexible software dev
+	-> Reduce complexity
